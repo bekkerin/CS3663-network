@@ -2,62 +2,54 @@
 VirtualBox network used for the CS3663 Principles of TCP/IP class
 
 ## Install VirtualBox
-1. Check System Requirements
+### 1. Check System Requirements
 Before installing, ensure your computer meets the basics:
 + Processor: x86-64 compatible (Intel or AMD).
 + Memory: At least 4GB of RAM (8GB+ recommended so you can share it with the guest OS).
 + BIOS/UEFI: Ensure Virtualization Technology (VT-x or AMD-V) is enabled in your BIOS settings.
-2. Download the Installer
-+ Go to the official VirtualBox website.
+### 2. Download the Installer
++ Go to the [official VirtualBox website](https://www.virtualbox.org/wiki/Downloads "Download VirtualBox").
 + Under the VirtualBox binaries section, select the "platform package" that matches your computer( Windows hosts, macOS hosts (Intel or Apple Silicon), Linux distributions)
-3. Run the Installation
-The process is straightforward for most users:
-
-For Windows:
+### 3. Run the Installation
+#### For Windows:
 + Double-click the downloaded .exe file.
 + Click Next through the setup prompts.
 + Note: Your network connection may drop briefly. This is normal, as VirtualBox installs a virtual network driver.
 + Click Install and then Finish.
-
-For macOS:
+#### For macOS:
 + Open the downloaded .dmg file.
 + Double-click the VirtualBox.pkg icon in the window that appears.
 + Follow the prompts. You may need to go to System Settings > Privacy & Security to "Allow" Oracle to run if the system blocks it.
-
-For Linux:
-
-
-4. Install the Extension Pack (Highly Recommended)
+#### For Linux:
++ Follow the instructions on [Download VirtualBox for Linux Hosts](https://www.virtualbox.org/wiki/Linux_Downloads "Download Virtualbox for Linux Hosts")
+### 4. Install the Extension Pack (Highly Recommended)
 The Extension Pack adds support for USB 2.0/3.0 devices, webcam sharing, and disk encryption.
 + On the same download page, look for the VirtualBox Extension Pack.
 + Download the "All supported platforms" file.
 + Open VirtualBox, go to File > Tools > Extension Pack Manager (or simply double-click the downloaded file).
 + Click Install and accept the license terms.
-
-5. Ready to Go
+### 5. Ready to Go
 You are now ready to create your first Virtual Machine! You will just need an ISO file (an image of an operating system, like Ubuntu or Windows 11) to get started.
 
 Tip: If you see an error like "VT-x is disabled in BIOS," you must restart your computer, enter the BIOS, and enable Virtualization.
 
 
 ## Create the base Windows 11 virtual machine
-1. Prerequisites
-Windows 11 ISO: Download the official ISO file from iTechTics. Look for the latest stable build (e.g., 24H2).  https://www.itechtics.com/windows-11-download-iso/
-License Key: While you can install Windows without a key initially, you’ll need one to personalize the OS. You can often find a $10 Windows 11 Pro license on StackSocial, which is a great budget-friendly option for home labs.  https://www.stacksocial.com/sales/microsoft-windows-11-pro-10
-2. Create the Virtual Machine
-Open VirtualBox and click New.
-Name and Operating System:
-Name: WindowsBase
-ISO Image: Click the dropdown and select the ISO file you downloaded.
-Edition: Select "Windows 11 " (to match your StackSocial key).
-uncheck Proceed with Unattended Installation if you want to walk through the manual setup.
-Hardware Configuration:
-Base Memory: At least 4096 MB (8GB is recommended if your host has enough).
-Processors: At least 2 CPUs.
-Enable EFI: Ensure this box is checked.
-Virtual Hard Disk:
-Set the size to at least 64 GB (80 GB+ is safer for updates).
-3. Handle TPM and Secure Boot
+### 1. Prerequisites
+Windows 11 ISO: Download the official ISO file [from iTechTics](https://www.itechtics.com/windows-11-download-iso/ "Download Windows ISO"). Look for the latest stable build (e.g., 24H2).  
+License Key: While you can install Windows without a key initially, you’ll need one to personalize the OS. You can often find a $10 Windows 11 Pro license on StackSocial, which is a great budget-friendly option for home labs. The key for Windows 11 Pro is [at this link](https://www.stacksocial.com/sales/microsoft-windows-11-pro-10 "Windows 11 Pro key") 
+### 2. Create the Virtual Machine
++ Open VirtualBox and click New.
++ Name: WindowsBase
++ ISO Image: Click the dropdown and select the ISO file you downloaded.
++ Edition: Select "Windows 11 " (to match your StackSocial key).
++ uncheck Proceed with Unattended Installation if you want to walk through the manual setup.
++ Hardware Configuration:
+   + Base Memory: At least 4096 MB (8GB is recommended if your host has enough).
+   + Processors: At least 2 CPUs.
+   + Enable EFI: Ensure this box is checked.
+   + Virtual Hard Disk: Set the size to at least 64 GB (80 GB+ is safer for updates).
+### 3. Handle TPM and Secure Boot
 Modern versions of VirtualBox (7.0+) include a "Virtual TPM" and "Secure Boot" option.
 
 Before starting the VM, go to Settings > System.
@@ -105,20 +97,26 @@ Log in with your NSU username and password cybersecurity.
 
 base vm 6
 
+Enable the shared clipboard between VM and host.
+
+Enable drag and drop between VM and host.
+
 install traceroute, SSH, and net-tools. You will probably need to provide your password cybersecurity.
 
-sudo apt install traceroute 
-sudo apt install net-tools
-sudo apt install openssh-server
+sudo apt-get install traceroute 
+sudo apt-get install net-tools
+sudo apt-get install openssh-server
 systemctl status ssh  
 sudo systemctl start  ssh
 sudo systemctl enable ssh
 systemctl status ssh  
- 
+
+After that last status command, you should see that your SSH server is active, running, and enabled.
+
 Install a lightweight desktop (the regular desktop is too resource heavy, and the server does not have a desktop by default).
 
-sudo apt update 
-sudo apt install lubuntu-desktop
+sudo apt-get update 
+sudo apt-get install lubuntu-desktop
 base vm 7
 
 answer y, wait to  finish, then check the python version
@@ -127,7 +125,6 @@ python3 --version
 install pip (python package installer) with
 
 sudo apt install python3-pip
-We'll install Visual Studio Code later in the clones.
 
 Close the base virtual machine.  
 
