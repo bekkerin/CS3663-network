@@ -78,3 +78,56 @@ Once Windows 11 is on the desktop, go to the VirtualBox menu:
 Click Devices > Insert Guest Additions CD Image.
 Open File Explorer in the VM, go to the CD drive, and run the installer. This enables full-screen mode, shared clipboards, and better performance.
 This video provides a visual step-by-step walkthrough of the installation process, including how to handle hardware requirements and guest additions: Windows 11 VirtualBox installation tutorial
+
+Create the base Ubuntu virtual machine
+1. create the Ubuntu Server base
+Download Ubuntu Server. I used Ubuntu 26.04 LTS from Get Ubuntu Server (https://ubuntu.com/download/server)
+
+Create the Ubuntu base VM. In VirtualBox: New. Give it the name ubuntu.
+
+Use your NSU username (email without @nsuok.edu) and as password cybersecurity as specified in the syllabus.
+
+You can leave the memory at 2 GB or you can increase it to 4 GB (4096 MB) if you have enough memory on your machine (like 16 GB)
+
+Leave the virtual hard disk size as is. By default, VirtualBox only uses what is needed so actual use is much lower.
+
+Just let it run and it will do its work. The screen will appear to hang but if you look closely, you will see the  command prompt for root at the bottom.  Simply type reboot , Enter, and the system will reboot to the login.
+
+base vm 5
+
+Log in with your NSU username and password cybersecurity.
+
+base vm 6
+
+install traceroute, SSH, and net-tools. You will probably need to provide your password cybersecurity.
+
+sudo apt install traceroute 
+sudo apt install net-tools
+sudo apt install openssh-server
+systemctl status ssh  
+sudo systemctl start  ssh
+sudo systemctl enable ssh
+systemctl status ssh  
+ 
+Install a lightweight desktop (the regular desktop is too resource heavy, and the server does not have a desktop by default).
+
+sudo apt update 
+sudo apt install lubuntu-desktop
+base vm 7
+
+answer y, wait to  finish, then check the python version
+
+python3 --version 
+install pip (python package installer) with
+
+sudo apt install python3-pip
+We'll install Visual Studio Code later in the clones.
+
+Close the base virtual machine.  
+
+shutdown now
+If it does not want to shut down, just close the VM window with the X top right.
+
+
+
+
