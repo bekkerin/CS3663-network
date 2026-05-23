@@ -90,9 +90,9 @@ Leave the virtual hard disk size as is. By default, VirtualBox only uses what is
 Just let it run and it will do its work. The screen will appear to hang but if you look closely, you will see the  command prompt for root at the bottom.  Simply type reboot , Enter, and the system will reboot to the login.
 ![installation finished at command line](/images/ubuntu05.png "installation finished at command line")
 Log in with your NSU username and password cybersecurity.
-![log in screen](/images/ubuntu07.png "log in screen")
+![log in screen](/images/ubuntu06.png "log in screen")
 You are now logged in.
-![ready to start](/images/ubuntu08.png "ready to start")
+![ready to start](/images/ubuntu07.png "ready to start")
 Enable the shared clipboard between VM and host.
 ![enable the shared clipboard](/images/ubuntu08.png "enable the shared clipboard")
 Enable drag and drop between VM and host.
@@ -108,23 +108,25 @@ sudo systemctl enable ssh
 systemctl status ssh  
 ```
 After that last status command, you should see that your SSH server is active, running, and enabled.
-
+![SSH server is installed](/images/ubuntu10.png "SSH server is installed")
 Install a lightweight desktop (the regular desktop is too resource heavy, and the server does not have a desktop by default).
-
+```
 sudo apt-get update 
 sudo apt-get install lubuntu-desktop
-base vm 7
-
+```
+![installing the desktop](/images/ubuntu11.png "installing the desktop")
 answer y, wait to  finish, then check the python version
-
-python3 --version 
+```
+python3 --version
+```
 install pip (python package installer) with
-
+```
 sudo apt install python3-pip
-
+```
 Close the base virtual machine.  
-
+```
 shutdown now
+```
 If it does not want to shut down, just close the VM window with the X top right.
 
 
