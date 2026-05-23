@@ -78,10 +78,9 @@ Once Windows 11 is on the desktop, go to the VirtualBox menu:
 
 ## Create the base Ubuntu virtual machine
 1. create the Ubuntu Server base
-Download Ubuntu Server. I used Ubuntu 26.04 LTS from Get Ubuntu Server (https://ubuntu.com/download/server)
-
-Create the Ubuntu base VM. In VirtualBox: New. Give it the name ubuntu.
-
++ Download Ubuntu Server. I used Ubuntu 26.04 LTS from [Get Ubuntu Server] (https://ubuntu.com/download/server "Get ubuntu server")
++ Create the Ubuntu base VM. In VirtualBox: New. Give it the name ubuntu.
+![first screen](/images/ubuntu01.png "first screen")
 Use your NSU username (email without @nsuok.edu) and as password cybersecurity as specified in the syllabus.
 
 You can leave the memory at 2 GB or you can increase it to 4 GB (4096 MB) if you have enough memory on your machine (like 16 GB)
