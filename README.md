@@ -1,7 +1,7 @@
 # CS3663-network
 VirtualBox network used for the CS3663 Principles of TCP/IP class
 
-Install VirtualBox
+## Install VirtualBox
 1. Check System Requirements
 Before installing, ensure your computer meets the basics:
 + Processor: x86-64 compatible (Intel or AMD).
@@ -40,7 +40,7 @@ You are now ready to create your first Virtual Machine! You will just need an IS
 Tip: If you see an error like "VT-x is disabled in BIOS," you must restart your computer, enter the BIOS, and enable Virtualization.
 
 
-Create the base Windows 11 virtual machine
+## Create the base Windows 11 virtual machine
 1. Prerequisites
 Windows 11 ISO: Download the official ISO file from iTechTics. Look for the latest stable build (e.g., 24H2).  https://www.itechtics.com/windows-11-download-iso/
 License Key: While you can install Windows without a key initially, you’ll need one to personalize the OS. You can often find a $10 Windows 11 Pro license on StackSocial, which is a great budget-friendly option for home labs.  https://www.stacksocial.com/sales/microsoft-windows-11-pro-10
@@ -79,7 +79,7 @@ Click Devices > Insert Guest Additions CD Image.
 Open File Explorer in the VM, go to the CD drive, and run the installer. This enables full-screen mode, shared clipboards, and better performance.
 This video provides a visual step-by-step walkthrough of the installation process, including how to handle hardware requirements and guest additions: Windows 11 VirtualBox installation tutorial
 
-Create the base Ubuntu virtual machine
+## Create the base Ubuntu virtual machine
 1. create the Ubuntu Server base
 Download Ubuntu Server. I used Ubuntu 26.04 LTS from Get Ubuntu Server (https://ubuntu.com/download/server)
 
