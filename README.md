@@ -81,23 +81,23 @@ Once Windows 11 is on the desktop, go to the VirtualBox menu:
 + Download Ubuntu Server. I used Ubuntu 26.04 LTS from [Get Ubuntu Server] (https://ubuntu.com/download/server "Get ubuntu server")
 + Create the Ubuntu base VM. In VirtualBox: New. Give it the name ubuntu.
 ![first screen with vm name](/images/ubuntu01.png "first screen with vm name")
-Use your NSU username (email without @nsuok.edu) and as password cybersecurity as specified in the syllabus.
++ Use your NSU username (email without @nsuok.edu) and as password cybersecurity as specified in the syllabus.
 ![second screen with username and password](/images/ubuntu02.png "second screen with username and password")
-You can leave the memory at 2 GB or you can increase it to 4 GB (4096 MB) if you have enough memory on your machine (like 16 GB)
++ You can leave the memory at 2 GB or you can increase it to 4 GB (4096 MB) if you have enough memory on your machine (like 16 GB)
 ![third screen with memory and CPUs](/images/ubuntu03.png "third screen with memory and CPUs")
-Leave the virtual hard disk size as is. By default, VirtualBox only uses what is needed so actual use is much lower.
++ Leave the virtual hard disk size as is. By default, VirtualBox only uses what is needed so actual use is much lower.
 ![fourth screen with virtual hard disk](/images/ubuntu04.png "fourth screen with virtual hard disk")
-Just let it run and it will do its work. The screen will appear to hang but if you look closely, you will see the  command prompt for root at the bottom.  Simply type reboot , Enter, and the system will reboot to the login.
++ Just let it run and it will do its work. The screen will appear to hang but if you look closely, you will see the  command prompt for root at the bottom.  Simply type reboot , Enter, and the system will reboot to the login.
 ![installation finished at command line](/images/ubuntu05.png "installation finished at command line")
-Log in with your NSU username and password cybersecurity.
++ Log in with your NSU username and password cybersecurity.
 ![log in screen](/images/ubuntu06.png "log in screen")
-You are now logged in.
++ You are now logged in.
 ![ready to start](/images/ubuntu07.png "ready to start")
-Enable the shared clipboard between VM and host.
++ Enable the shared clipboard between VM and host.
 ![enable the shared clipboard](/images/ubuntu08.png "enable the shared clipboard")
-Enable drag and drop between VM and host.
++ Enable drag and drop between VM and host.
 ![enable drag and drop between vm and host](/images/ubuntu09.png "enable drag and drop")
-install traceroute, SSH, and net-tools. You will probably need to provide your password cybersecurity.
++ Install traceroute, SSH, and net-tools. You will probably need to provide your password cybersecurity.
 ```
 sudo apt-get install traceroute 
 sudo apt-get install net-tools
@@ -107,27 +107,27 @@ sudo systemctl start  ssh
 sudo systemctl enable ssh
 systemctl status ssh  
 ```
-After that last status command, you should see that your SSH server is active, running, and enabled.
++ After that last status command, you should see that your SSH server is active, running, and enabled.
 ![SSH server is installed](/images/ubuntu10.png "SSH server is installed")
-Install a lightweight desktop (the regular desktop is too resource heavy, and the server does not have a desktop by default).
++ Install a lightweight desktop (the regular desktop is too resource heavy, and the server does not have a desktop by default). This will take a little while to download.
 ```
 sudo apt-get update 
 sudo apt-get install lubuntu-desktop
 ```
 ![installing the desktop](/images/ubuntu11.png "installing the desktop")
-answer y, wait to  finish, then check the python version
++ Answer y, wait to  finish, then check the python version
 ```
 python3 --version
 ```
-install pip (python package installer) with
++ Install pip (python package installer) with
 ```
 sudo apt install python3-pip
 ```
-Close the base virtual machine.  
++ Close the base virtual machine.  
 ```
 shutdown now
 ```
-If it does not want to shut down, just close the VM window with the X top right.
++ If it does not want to shut down, just close the VM window with the X top right.
 
 
 
