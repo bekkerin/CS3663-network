@@ -50,32 +50,31 @@ License Key: While you can install Windows without a key initially, you’ll nee
    + Enable EFI: Ensure this box is checked.
    + Virtual Hard Disk: Set the size to at least 64 GB (80 GB+ is safer for updates).
 ### 3. Handle TPM and Secure Boot
-Modern versions of VirtualBox (7.0+) include a "Virtual TPM" and "Secure Boot" option.
-
-Before starting the VM, go to Settings > System.
-Under the Motherboard tab, ensure TPM 2.0 is selected.
-Under Processor, ensure Enable PAE/NX is checked.
-4. Install Windows 11
-Select your VM and click Start.
-Boot from ISO: When you see "Press any key to boot from CD or DVD," quickly press a key.
-Bypass Requirements (If needed): If you get a "This PC can't run Windows 11" error, press Shift + F10 to open a command prompt and type:
+Modern versions of VirtualBox (7.0+) include a "Virtual TPM" and "Secure Boot" option. 
++ Before starting the VM, go to Settings > System.
++ Under the Motherboard tab, ensure TPM 2.0 is selected.
++ Under Processor, ensure Enable PAE/NX is checked.
+### 4. Install Windows 11
++ Select your VM and click Start.
++ Boot from ISO: When you see "Press any key to boot from CD or DVD," quickly press a key.
++ Bypass Requirements (If needed): If you get a "This PC can't run Windows 11" error, press Shift + F10 to open a command prompt and type:
+```
 reg add HKLM\System\Setup\LabConfig /v BypassTPMCheck /t REG_DWORD /d 1
 reg add HKLM\System\Setup\LabConfig /v BypassSecureBootCheck /t REG_DWORD /d 1
-Follow the on-screen prompts. When asked for a product key, click "I don't have a product key" to finish the installation first; you can enter your StackSocial key later in settings. For the operating system, I recommend Windows 11 Pro.
-Windows takes a long time to install, so I would just   install the Linux machines at the same time.
-When asked for the name: WindowsBase.
-How would you like to set up this device? Set up for personal use.
-If you don't have a Microsoft account, just create one. Get a confirmation code on your email, and create a PIN. 
-I just deselect all privacy settings. 
-Use skip / not now 
-Wait for installation to finish. You will be logged in with your Microsoft account.
-
-5. Final Steps: Guest Additions
+```
++ Follow the on-screen prompts. When asked for a product key, click "I don't have a product key" to finish the installation first; you can enter your StackSocial key later in settings. For the operating system, I recommend Windows 11 Pro.
++ Windows takes a long time to install, so I would just   install the Linux machines at the same time.
++ When asked for the name: WindowsBase.
++ How would you like to set up this device? Set up for personal use.
++ If you don't have a Microsoft account, just create one. Get a confirmation code on your email, and create a PIN. 
++ I just deselect all privacy settings. 
++ Use skip / not now 
++ Wait for installation to finish. You will be logged in with your Microsoft account.
+### 5. Final Steps: Guest Additions
 Once Windows 11 is on the desktop, go to the VirtualBox menu:
-
-Click Devices > Insert Guest Additions CD Image.
-Open File Explorer in the VM, go to the CD drive, and run the installer. This enables full-screen mode, shared clipboards, and better performance. On my Windows machine with 64 bit processor, I used VBoxWindowsAdditions-amd64.
-This video provides a visual step-by-step walkthrough of the installation process, including how to handle hardware requirements and guest additions: Windows 11 VirtualBox installation tutorial
++ Click Devices > Insert Guest Additions CD Image.
++ Open File Explorer in the VM, go to the CD drive, and run the installer. This enables full-screen mode, shared clipboards, and better performance. On my Windows machine with 64 bit processor, I used VBoxWindowsAdditions-amd64.
++ This video provides a visual step-by-step walkthrough of the installation process, including how to handle hardware requirements and guest additions: Windows 11 VirtualBox installation tutorial
 
 ## Create the base Ubuntu virtual machine
 1. create the Ubuntu Server base
