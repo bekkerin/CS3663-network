@@ -130,7 +130,7 @@ shutdown now
 + If it does not want to shut down, just close the VM window with the X top right.
 
 ## Setting up the network.
-We are going to set up a network with two routers, both connected to two client. We will use the following types of network connections:
+We are going to set up a network with two routers(Router01 and Router02), both connected to two clients (ClientA1, ClientA2, ClientB1, and ClientB2). We will use the following types of network connections:
 + internal network: creates a completely isolated virtual cable between specified VMs. VMs on the same named internal network can see each other , but they have no access to the host machine or the "real" internet.
 + host-only adapter: creates a private network between the physical host and the VMs. We use it as a "management network" with tools like Secure Shell (SSH) so you can easily work with your virtual machines.
 + NAT: allows the specific VM to access the outside internet using the host's internet connection.
@@ -150,7 +150,7 @@ We are going to set up a network with two routers, both connected to two client.
 |ClientB1	|Adapter 1	|Internal Network	|LAN_B	|Connects to Router02|
 |ClientB2	|Adapter 1	|Internal Network	|LAN_B	|Connects to Router02|
 
-Now assign IP addresses as follows:
+IP addresses will be assigned as follows:
 Network A (LAN_A - Subnet: 192.168.10.0/24)
 + Router01 (Adapter 1): 192.168.10.1
 + ClientA1: 192.168.10.10 (Gateway: 192.168.10.1)
@@ -164,5 +164,24 @@ Network B (LAN_B - Subnet: 192.168.20.0/24)
 + Router02 (Adapter 2): 192.168.20.1
 + ClientB1: 192.168.20.10 (Gateway: 192.168.20.1)
 + ClientB2: 192.168.20.11 (Gateway: 192.168.20.1)
+
+## Cloning the ubuntu VMs
+We will be using clones to minimize memory and disk space use. Right click on ubuntu
+ubuntu12
++ Create the clone ClientA1, ClientA2, ClientB1, ClientB2, Router01, and Router02. All should be linked clones and new MAC adddresses for all network adapters should be generated.Make sure you clone them from ubuntu, not one of the other clones. 
+ubuntu13
++ You will now see six clones.
+ubuntu14
++ Highlight the six clones, right click on the group, and move them to a new group.
+ubuntu15
++ Right click the group name and rename the group to CS3663. You can use this to start your whole network as a group later.
+ubuntu16
++ All clones have four network adapters, and we will set them according to the tables above. Right click on the VM. Go to Settings. CLick on Network. Use the proper adapter tab and make the changes. This is what it looks like for ClientA1.
+ubuntu17
+
+
+
+
+
 
 
