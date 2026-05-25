@@ -179,9 +179,26 @@ ubuntu15
 ubuntu16
 + All clones have four network adapters, and we will set them according to the tables above. Right click on the VM. Go to Settings. CLick on Network. Use the proper adapter tab and make the changes. Don't forget to enable adapters 2,3, and 4 if you use them. This is what it looks like for ClientA1.
 ubuntu17
-+ Because we cloned the VMs, they now all have the same name. Change them so your terminal prompt tells you exactly where you are. For ClientA1:
-```sudo hostnamectl set-hostname clientA1
-hostname ```
++ Because we cloned the VMs, they now all have the same name. Change them so your terminal prompt tells you exactly where you are. Start all six clones and log in with your password cybersecurity.
+ubuntu18
++ Open a terminal with Start button - System Tools - QTerminal.
+ubuntu19
++ For each VM, change the hostname and check it. For ClientA1:
+```
+sudo hostnamectl set-hostname clientA1
+hostname
+```
+ubuntu20
++ Reset the Machine IDs. When you clone the VMs, they all thave the same product ID/ machine ID. This will confuse the Dynamic Host Control Protocol (DHCP)server for NAT and host-only adapters. For each clone, generate a new unique ID:
+```
+sudo rm /etc/machine-id
+sudo dbus-uuidgen --ensure=/etc/machine-id
+```
+
+
+
+
+
 
 
 
