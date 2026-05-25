@@ -129,6 +129,13 @@ shutdown now
 ```
 + If it does not want to shut down, just close the VM window with the X top right.
 
+## Setting up the network.
+We are going to set up a network with two routers, both connected to two client. We will use the following types of network connections:
++ internal network: creates a completely isolated virtual cable between specified VMs. VMs on the same named internal network can see each other , but they have no access to the host machine or the "real" internet.
++ host-only adapter: creates a private network between the physical host and the VMs. We use it as a "management network" with tools like Secure Shell (SSH) so you can easily work with your virtual machines.
++ NAT: allows the specific VM to access the outside internet using the host's internet connection.
++ later on, we will also use a bridged adapter when we want to connect to the host's WiFi adapter when we work with wireless.
+
 
 
 
