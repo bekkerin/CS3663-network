@@ -136,6 +136,33 @@ We are going to set up a network with two routers, both connected to two client.
 + NAT: allows the specific VM to access the outside internet using the host's internet connection.
 + later on, we will also use a bridged adapter when we want to connect to the host's WiFi adapter when we work with wireless.
 
+|Virtual Machine|Adapter Slot|Adapter Type|Name/Network|Purpose|
+|---------------|------------|------------|------------|-------|
+|ClientA1	|Adapter 1	|Internal Network	|LAN_A	|Connects to Router01|
+|ClientA2	|Adapter 1	|Internal Network	|LAN_A	|Connects to Router01|
+|Router01	|Adapter 1	|Internal Network	|LAN_A	|Gateway for ClientA1|
+||Adapter 2	|Internal Network	|Transit_Link	|Dynamic OSPF |Link to Router02
+||Adapter 3	|NAT	|Built-in	|Isolated Internet for updates/FRR|
+||	Adapter 4	|Host-Only	|vboxnet0 (or similar)	|SSH Management from Host|
+||	Adapter 2	|Internal Network	|LAN_B	|Gateway for ClientB1|
+||	Adapter 3	|NAT	|Built-in	|Isolated Internet for updates/FRR|
+||	Adapter 4	|Host-Only	|vboxnet0 (or similar)	|SSH Management from Host| 
+|ClientB1	|Adapter 1	|Internal Network	|LAN_B	|Connects to Router02|
+|ClientB2	|Adapter 1	|Internal Network	|LAN_B	|Connects to Router02|
 
+Now assign IP addresses as follows:
+Network A (LAN_A - Subnet: 192.168.10.0/24)
++ Router01 (Adapter 1): 192.168.10.1
++ ClientA1: 192.168.10.10 (Gateway: 192.168.10.1)
++ ClientA2: 192.168.10.11 (Gateway: 192.168.10.1)
+
+Transit Link (Subnet: 10.1.1.0/30)
++ Router01 (Adapter 2): 10.1.1.1
++ Router02 (Adapter 1): 10.1.1.2
+
+Network B (LAN_B - Subnet: 192.168.20.0/24)
++ Router02 (Adapter 2): 192.168.20.1
++ ClientB1: 192.168.20.10 (Gateway: 192.168.20.1)
++ ClientB2: 192.168.20.11 (Gateway: 192.168.20.1)
 
 
