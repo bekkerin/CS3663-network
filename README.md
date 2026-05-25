@@ -189,12 +189,43 @@ sudo hostnamectl set-hostname clientA1
 hostname
 ```
 ubuntu20
-+ Reset the Machine IDs. When you clone the VMs, they all thave the same product ID/ machine ID. This will confuse the Dynamic Host Control Protocol (DHCP)server for NAT and host-only adapters. For each clone, generate a new unique ID:
++ Reset the Machine IDs. When you clone the VMs, they all thave the same product ID/ machine ID. This will confuse the Dynamic Host Control Protocol (DHCP)server for NAT and host-only adapters. For each clone, generate a new unique ID. You can also check the new ID with the nano command(nano closes with CTRL+X). Reboot the machines.
 ```
 sudo rm /etc/machine-id
 sudo dbus-uuidgen --ensure=/etc/machine-id
+nano /etc/machine-id
+sudo reboot
 ```
 
+## Mapping the interface names and configuring IP addresses
+Because VirtualBox maps adapters dynamically, we need to know what Linux named them. On each machine, run:
+```
+ip link show
+```
++ All clients have a loopback adapter (lo) and one ethernet adapter enp0s3.
+ubuntu22
++ Both routers have a loopback adapter, and four ethernet adapters (enp0s3, enp0s8, enp0s9, and enp0s10).
+ubuntu23
++ Ubuntu Server uses Netplan to manage networking. You will modify /etc/netplan/00-installer-config.yaml on each machine. Use this code to rewrite the yaml files.
+```
+sudo nano /etc/netplan/00-installer-config.yaml 
+```
++ Here is the original file (commented out at top) with the new content for ClientA1.
+ubuntu24
+```
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3:
+      dhcp4: false
+      addresses: [192.168.10.10/24]
+      routes:
+        - to: default
+          via: 192.168.10.1
+      nameservers:
+        addresses: [8.8.8.8, 1.1.1.1]
+```
 
 
 
