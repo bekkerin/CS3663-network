@@ -248,6 +248,10 @@ network:
     enp0s10: # Your Host-Only Adapter
       dhcp4: true
 ```
++ Use CTRL+X to exit, Y to save the modified buffer, Enter to keep the same file name. Activate the configuration with
+```
+sudo netplan apply
+```
 + For Router02:
 ```
 network:
@@ -265,9 +269,24 @@ network:
     enp0s10: # Your Host-Only Adapter
       dhcp4: true
 ```
-
-
-
++ Use CTRL+X to exit, Y to save the modified buffer, Enter to keep the same file name. Activate the configuration with
+```
+sudo netplan apply
+```
+## Check local connectivity
++ Verify the local connections work:
+Ping ClientA2 (192.168.10.11) from ClientA1 (192.168.10.10). (Tests LAN_A switching).
+```
+ping -c 5 192.168.10.11
+```
+Ping Router01 (192.168.10.1) from ClientA1. (Tests local gateway connectivity).
+```
+ping -c 5 192.168.10.1
+```
+Ping Router02 (10.1.1.2) from Router01 (10.1.1.1). (Tests the Transit_Link).
+```
+ping -c 5 10.1.1.2
+```
 
 
 
