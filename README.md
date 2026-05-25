@@ -288,6 +288,27 @@ Ping Router02 (10.1.1.2) from Router01 (10.1.1.1). (Tests the Transit_Link).
 ping -c 5 10.1.1.2
 ```
 
+## Enable IP forwarding on both routers
++ Right now, if Router01 gets a packet from ClientA1 that is meant for ClientB1, it will drop it. We need to tell the Linux kernel to forward traffic between interfaces. Run this on Router01 and Router02:
+```
+sudo sysctl -w net.ipv4.ip_forward=1
+```
+Make the change permanent. Create a new configuration file:
+```
+sudo nano /etc/sysctl.d/99-routing.conf
+```
+add this line to the file:
+```
+net.ipv4.ip_forward=1
+```
+Save and exit the file (Ctrl+O, Enter, Ctrl+X). Load the new configuration file:
+```
+sudo sysctl --system
+```
+You should see a wall of text scroll by, with a line at the very bottom confirming that your 99-routing.conf was read and net.ipv4.ip_forward = 1 was applied.
+
+
+
 
 
 
