@@ -226,9 +226,45 @@ network:
       nameservers:
         addresses: [8.8.8.8, 1.1.1.1]
 ```
-
-
-
++ Use CTRL+X to exit, Y to save the modified buffer, Enter to keep the same file name. Activate the configuration with
+```
+sudo netplan apply
+```
++ For ClientA2 change the address to 192.168.10.11/24, for ClientB1 change the IP to 192.168.20.10/24 and the gateway to 102.168.20.1, for CLientB2 change the IP to 192.168.20.11/24 and the gateway to 192.168.20.1. 
++ For Router01:
+```
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3: # Your LAN_A Adapter
+      dhcp4: false
+      addresses: [192.168.10.1/24]
+    enp0s8: # Your Transit_Link Adapter
+      dhcp4: false
+      addresses: [10.1.1.1/30]
+    enp0s9: # Your NAT Adapter
+      dhcp4: true
+    enp0s10: # Your Host-Only Adapter
+      dhcp4: true
+```
++ For Router02:
+```
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3: # Your Transit_Link Adapter
+      dhcp4: false
+      addresses: [10.1.1.2/30]
+    enp0s8: # Your LAN_B Adapter
+      dhcp4: false
+      addresses: [192.168.20.1/24]
+    enp0s9: # Your NAT Adapter
+      dhcp4: true
+    enp0s10: # Your Host-Only Adapter
+      dhcp4: true
+```
 
 
 
