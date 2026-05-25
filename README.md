@@ -143,10 +143,11 @@ We are going to set up a network with two routers(Router01 and Router02), both c
 |Router01	|Adapter 1	|Internal Network	|LAN_A	|Gateway for ClientA1|
 ||Adapter 2	|Internal Network	|Transit_Link	|Dynamic OSPF |Link to Router02
 ||Adapter 3	|NAT	|Built-in	|Isolated Internet for updates/FRR|
-||	Adapter 4	|Host-Only	|vboxnet0 (or similar)	|SSH Management from Host|
+||	Adapter 4	|Host-Only	|VirtualBox Host-only Ethernet Adapter (or similar)|SSH Management from Host|
+|Router02  | Adapter 1 | Internal Network | Transit link | Dynamic OSPF Link to Router01|
 ||	Adapter 2	|Internal Network	|LAN_B	|Gateway for ClientB1|
 ||	Adapter 3	|NAT	|Built-in	|Isolated Internet for updates/FRR|
-||	Adapter 4	|Host-Only	|vboxnet0 (or similar)	|SSH Management from Host| 
+||	Adapter 4	|Host-Only	|VirtualBox Host-only Ethernet Adapter (or similar)|SSH Management from Host| 
 |ClientB1	|Adapter 1	|Internal Network	|LAN_B	|Connects to Router02|
 |ClientB2	|Adapter 1	|Internal Network	|LAN_B	|Connects to Router02|
 
@@ -176,9 +177,11 @@ ubuntu14
 ubuntu15
 + Right click the group name and rename the group to CS3663. You can use this to start your whole network as a group later.
 ubuntu16
-+ All clones have four network adapters, and we will set them according to the tables above. Right click on the VM. Go to Settings. CLick on Network. Use the proper adapter tab and make the changes. This is what it looks like for ClientA1.
++ All clones have four network adapters, and we will set them according to the tables above. Right click on the VM. Go to Settings. CLick on Network. Use the proper adapter tab and make the changes. Don't forget to enable adapters 2,3, and 4 if you use them. This is what it looks like for ClientA1.
 ubuntu17
-
++ Because we cloned the VMs, they now all have the same name. Change them so your terminal prompt tells you exactly where you are. For ClientA1:
+```sudo hostnamectl set-hostname clientA1
+hostname ```
 
 
 
