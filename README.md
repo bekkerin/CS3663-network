@@ -307,7 +307,45 @@ sudo sysctl --system
 ```
 You should see a wall of text scroll by, with a line at the very bottom confirming that your 99-routing.conf was read and net.ipv4.ip_forward = 1 was applied.
 
+## Connect the routers to SSH 
+Optional, but it will make it much easier to update the routers. You can copy and paste commands from this tutorial to Powershell.
++ Run ip addr show on the routers to find the IP assigned to your Host-Only interface (it usually looks like 192.168.56.X).
++ On my Router01, loopback was 27.0.0.1, enp0s3 was 192.168.10.1, enp0s8 was  10.1.1.1, enp0s9 was 10.0.4.15, and enp0s10 was 192.168.56.103. On Router 02, enp0s10 was  192.168.56.104.
+ubuntu25
++ Open the terminal or PowerShell on your physical host computer and log into the routers. In my case, for Router01
+```
+ssh bekkerin@192.168.56.103
+```
++ Router02:
+```
+ssh bekkerin@192.168.56.104
+```
+In both cases, I had to add the VM to known hosts.
+ubuntu26
 
+## Install FRRouting on both routers
++ Since both routers  are  connected to NAT, they can reach the  public internet to pull down packages. For both routers, copy and paste this code to the SSH terminal:
+```
+sudo apt update
+sudo apt install frr -y
+```
+
+## Enable the OSPF Daemon
++ By default, FRR installs with all routing protocols disabled. We need to explicitly turn OSPF on. On both routers, open the daemons configuration file:
+```
+sudo nano /etc/frr/daemons
+```
++ Look for the line that says ospfd=no and change it to:
+```
+ospfd=yes
+```
++ Save and exit (Ctrl+X, Yes, Enter). Restart the FRR  service to apply the change.
+```
+sudo systemctl restart frr
+systemctl status frr
+```
++ Close the status with the letter q for quit.
++ 
 
 
 
