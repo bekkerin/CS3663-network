@@ -176,20 +176,19 @@ We will be using clones to minimize memory and disk space use. Right click on ub
 + Highlight the six clones, right click on the group, and move them to a new group.
 ![moving VMs to the new group](/images/ubuntu15.png "moving VMs to the new group")
 + Right click the group name and rename the group to CS3663. You can use this to start your whole network as a group later.
-
 ![renaming the group](/images/ubuntu16.png "renaming the group")
 + All clones have four network adapters, and we will set them according to the tables above. Right click on the VM. Go to Settings. CLick on Network. Use the proper adapter tab and make the changes. Don't forget to enable adapters 2,3, and 4 if you use them. This is what it looks like for ClientA1.
-ubuntu17
+![network adapter tabs](/images/ubuntu17.png "network adapter tabs")
 + Because we cloned the VMs, they now all have the same name. Change them so your terminal prompt tells you exactly where you are. Start all six clones and log in with your password cybersecurity.
-ubuntu18
+![logging in to the VMs](/images/ubuntu18.png "logging in to the VMs")
 + Open a terminal with Start button - System Tools - QTerminal.
-ubuntu19
+![opening the terminal](/images/ubuntu19.png "opening the terminal")
 + For each VM, change the hostname and check it. For ClientA1:
 ```
 sudo hostnamectl set-hostname clientA1
 hostname
 ```
-ubuntu20
+![changing the host name](/images/ubuntu20.png "changing the host name")
 + Reset the Machine IDs. When you clone the VMs, they all thave the same product ID/ machine ID. This will confuse the Dynamic Host Control Protocol (DHCP)server for NAT and host-only adapters. For each clone, generate a new unique ID. You can also check the new ID with the nano command(nano closes with CTRL+X). Reboot the machines.
 ```
 sudo rm /etc/machine-id
@@ -197,6 +196,7 @@ sudo dbus-uuidgen --ensure=/etc/machine-id
 nano /etc/machine-id
 sudo reboot
 ```
+![changing the machine ID](/images/ubuntu21.png "changing the machine ID")
 
 ## Mapping the interface names and configuring IP addresses
 Because VirtualBox maps adapters dynamically, we need to know what Linux named them. On each machine, run:
@@ -204,15 +204,15 @@ Because VirtualBox maps adapters dynamically, we need to know what Linux named t
 ip link show
 ```
 + All clients have a loopback adapter (lo) and one ethernet adapter enp0s3.
-ubuntu22
+![checking the network adapters for the clients](/images/ubuntu22.png "checking the network adapters for the clients")
 + Both routers have a loopback adapter, and four ethernet adapters (enp0s3, enp0s8, enp0s9, and enp0s10).
-ubuntu23
+![checking the network adapters for the routers](/images/ubuntu23.png "checking the network adapters for the  routers")
 + Ubuntu Server uses Netplan to manage networking. You will modify /etc/netplan/00-installer-config.yaml on each machine. Use this code to rewrite the yaml files.
 ```
 sudo nano /etc/netplan/00-installer-config.yaml 
 ```
 + Here is the original file (commented out at top) with the new content for ClientA1.
-ubuntu24
+![editing the netplan file](/images/ubuntu24.png "editing the netplan file")
 ```
 network:
   version: 2
@@ -312,7 +312,7 @@ You should see a wall of text scroll by, with a line at the very bottom confirmi
 Optional, but it will make it much easier to update the routers. You can copy and paste commands from this tutorial to Powershell.
 + Run ip addr show on the routers to find the IP assigned to your Host-Only interface (it usually looks like 192.168.56.X).
 + On my Router01, loopback was 27.0.0.1, enp0s3 was 192.168.10.1, enp0s8 was  10.1.1.1, enp0s9 was 10.0.4.15, and enp0s10 was 192.168.56.103. On Router 02, enp0s10 was  192.168.56.104.
-ubuntu25
+![checking IP addresses](/images/ubuntu25.png "checking IP addresses")
 + Open the terminal or PowerShell on your physical host computer and log into the routers. In my case, for Router01
 ```
 ssh bekkerin@192.168.56.103
@@ -322,7 +322,7 @@ ssh bekkerin@192.168.56.103
 ssh bekkerin@192.168.56.104
 ```
 In both cases, I had to add the VM to known hosts.
-ubuntu26
+![logging in with SSH over Powershell](/images/ubuntu26.png "logging in with SSH over Powershell")
 
 ## Install FRRouting on both routers
 + Since both routers  are  connected to NAT, they can reach the  public internet to pull down packages. For both routers, copy and paste this code to the SSH terminal:
@@ -354,7 +354,7 @@ systemctl status frr
 sudo vtysh
 ``` 
 + You will see the prompt change to Router01#.
-ubuntu27
+![the CISCO style console](/images/ubuntu27.png "the CISCO style console")
 + Run the following sequence (avoid copy/paste because sometimes it included the terminal prompt):
 ```
 Router01# configure terminal
@@ -380,7 +380,7 @@ Router02# write memory
 exit
 ```
 + This is my Router02 output:
-ubuntu28
+![the finished roouter file](/images/ubuntu28.png "the finished roouter file")
 
 ## Testing the lab
 Enter the interactive  engine for both routers with 
@@ -401,7 +401,7 @@ Router01# show ip route
 ```
 ping -c 5 192.168.20.11
 ```
-ubuntu29
+![ping across the router](/images/ubuntu29.png "ping across the router")
 
 
 
