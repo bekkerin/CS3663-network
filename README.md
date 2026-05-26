@@ -345,7 +345,70 @@ sudo systemctl restart frr
 systemctl status frr
 ```
 + Close the status with the letter q for quit.
-+ 
+
+## Configure OSPF via the Cisco-style CLI
++ Enter the interactive FRR engine to configure our routing tables.
++ On Router01: 
+```
+sudo vtysh
+``` 
++ You will see the prompt change to Router01#.
+ubuntu27
++ Run the following sequence (avoid copy/paste because sometimes it included the terminal prompt):
+```
+Router01# configure terminal
+Router01(config)# router ospf
+Router01(config-router)# router-id 1.1.1.1
+Router01(config-router)# network 192.168.10.0/24 area 0
+Router01(config-router)# network 10.1.1.0/30 area 0
+Router01(config-router)# exit
+Router01(config)# exit
+Router01# write memory
+exit
+```
++ For Router02, after sudo vtysh, the code is:
+```
+Router02# configure terminal
+Router02(config)# router ospf
+Router02(config-router)# router-id 2.2.2.2
+Router02(config-router)# network 192.168.20.0/24 area 0
+Router02(config-router)# network 10.1.1.0/30 area 0
+Router02(config-router)# exit
+Router02(config)# exit
+Router02# write memory
+exit
+```
++ This is my Router02 output:
+ubuntu28
+
+## Testing the lab
+Enter the interactive  engine for both routers with 
+```
+sudo vtysh
+```
++ On Router01, type
+```
+Router01# show ip ospf neighbor
+```
++ You should see 2.2.2.2 listed in a state of FULL/DR or FULL/BDR. This means OSPF has successfully synchronized databases.
++ Check the routing table. Still on Router01, type: 
+```
+Router01# show ip route
+```
++ Look for a line starting with a capital O. It should show that it dynamically learned about 192.168.20.0/24 (LAN_B) through Router02.
++ Go to ClientA1's console and try to ping ClientB2 all the way on the other side of the network:
+```
+ping -c 5 192.168.20.11
+```
+ubuntu29
+
+
+
+
+
+
+
+
 
 
 
