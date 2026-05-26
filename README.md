@@ -168,7 +168,8 @@ Network B (LAN_B - Subnet: 192.168.20.0/24)
 
 ## Cloning the ubuntu VMs
 We will be using clones to minimize memory and disk space use. Right click on ubuntu
-ubuntu12
+
+![first screen with vm name](/images/ubuntu12.png "first screen with vm name")
 + Create the clone ClientA1, ClientA2, ClientB1, ClientB2, Router01, and Router02. All should be linked clones and new MAC adddresses for all network adapters should be generated.Make sure you clone them from ubuntu, not one of the other clones. 
 ubuntu13
 + You will now see six clones.
@@ -390,7 +391,7 @@ sudo vtysh
 ```
 Router01# show ip ospf neighbor
 ```
-+ You should see 2.2.2.2 listed in a state of FULL/DR or FULL/BDR. This means OSPF has successfully synchronized databases.
++ You should see 2.2.2.2 listed in a state of FULL/DR or FULL/BDR  (Designated Router / Backup Designated Router). This means OSPF has successfully synchronized databases.
 + Check the routing table. Still on Router01, type: 
 ```
 Router01# show ip route
