@@ -168,16 +168,16 @@ Network B (LAN_B - Subnet: 192.168.20.0/24)
 
 ## Cloning the ubuntu VMs
 We will be using clones to minimize memory and disk space use. Right click on ubuntu
-
-![first screen with vm name](/images/ubuntu12.png "first screen with vm name")
+![finding the clone button](/images/ubuntu12.png "finding the clone button")
 + Create the clone ClientA1, ClientA2, ClientB1, ClientB2, Router01, and Router02. All should be linked clones and new MAC adddresses for all network adapters should be generated.Make sure you clone them from ubuntu, not one of the other clones. 
-ubuntu13
+![changes to make](/images/ubuntu13.png "changes to make")
 + You will now see six clones.
-ubuntu14
+![grouping the VMs](/images/ubuntu14.png "grouping the VMs")
 + Highlight the six clones, right click on the group, and move them to a new group.
-ubuntu15
+![moving VMs to the new group](/images/ubuntu15.png "moving VMs to the new group")
 + Right click the group name and rename the group to CS3663. You can use this to start your whole network as a group later.
-ubuntu16
+
+![renaming the group](/images/ubuntu16.png "renaming the group")
 + All clones have four network adapters, and we will set them according to the tables above. Right click on the VM. Go to Settings. CLick on Network. Use the proper adapter tab and make the changes. Don't forget to enable adapters 2,3, and 4 if you use them. This is what it looks like for ClientA1.
 ubuntu17
 + Because we cloned the VMs, they now all have the same name. Change them so your terminal prompt tells you exactly where you are. Start all six clones and log in with your password cybersecurity.
