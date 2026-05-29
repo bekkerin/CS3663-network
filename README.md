@@ -424,7 +424,8 @@ ping -c 5 192.168.20.11
 ```
 ![ping across the router](/images/ubuntu29.png "ping across the router")
 
-
+## Create the Windows clone.
+Now that you know how to clone a VM, use WindowsBase to create the clone ClientWin. Just leave it on the NAT for adapter 1 for now. In our assignments, we will use different  types of connections. 
 
 
 
